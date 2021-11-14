@@ -86,12 +86,12 @@ The app looks like this:
         |-__init__.py
         |-email.py
         |-models.py
+        |-requests.py
     |-migrations/
     |-tests/
         |-test_comments.py
-        |-test_downvote.py
-        |-test_pitch.py
-        |-test_upvote.py
+        |-test_post.py
+        |-test_quote.py
         |-test_user.py
     |-virtual/
     |-config.py
