@@ -1,0 +1,29 @@
+{%extends "base.html"%}
+
+{%block content%}
+<br><br><br>
+<div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h3>Update Info</h3>
+                <form method="post">
+                    {{form.hidden_tag()}}
+                    {{form.first_name.label}} {{form.first_name(class = "form-control", value = user.first_name)}}
+                    <br>
+                    {{form.last_name.label}} {{form.last_name(class = "form-control", value = user.last_name)}}
+                    <br>
+                    {{form.email.label}} {{form.email(class = "form-control", value = user.email)}}
+                    <br>
+                    {{form.bio.label}} {{form.bio(class = "form-control", value = user.bio)}}
+                    <br>
+                    {{form.submit(class = "btn btn-primary")}}
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

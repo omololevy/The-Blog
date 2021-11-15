@@ -1,0 +1,79 @@
+{% extends 'base.html'%}
+{% block content %}
+<div class="container content">
+    <div class="row profile">
+        <div class="col-md-3">
+            <div class="profile-sidebar position-fixed">
+                <!-- SIDEBAR USERPIC -->
+                {%if user.username == 'cotechlevy'%}
+                <div class="profile-userpic">
+                    <img src="https://avatars.githubusercontent.com/omololevy"
+                        class="img-responsive" alt="" height="250" width="250">
+                </div>
+                {%else%}           
+                <div class="profile-userpic">
+                    <img src="https://image.ibb.co/jw55Ex/def_face.jpg"
+                    class="img-responsive" alt="" height="250" width="250">
+                </div>
+                {%endif%}
+                <!-- SIDEBAR USER TITLE -->
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        <strong>{{user.first_name}} {{user.last_name}}</strong>
+                    </div>
+                    <div class="profile-usertitle-job">
+                        <small>{{user.username}}</small>
+                    </div>
+                    {%if user.bio%}
+                    <p>{{user.bio}}</p>
+                    {%else%}
+                    <p>No bio</p>
+                    {%endif%}
+                </div>
+                <!-- END SIDEBAR USER TITLE -->
+                <!-- SIDEBAR MENU -->
+                {%if current_user.is_authenticated%}
+                <hr>
+                <div class="profile-usermenu sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url_for('main.update_profile', id = user.id)}}">
+                                <i class="fas fa-user-edit"></i>
+                                Account Settings </a>
+                        </li>
+                    </ul>
+                </div>
+                {%endif%}
+                <!-- END MENU -->
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="profile-content">
+                {%for post in posts[::-1]%}
+                <div class="post-preview">
+                    {%if current_user.is_authenticated%}
+                    <div style="float: right; padding-bottom: 50px">
+                        <a href="{{url_for('main.edit_post', id = post.id)}}" class="btn btn-outline-info btn-sm"><i class="far fa-edit"></i></a>
+                        <a href="{{url_for('main.delete_post', id = user.id, post_id = post.id)}}" class="btn btn-outline-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+                    </div>
+                    {%endif%}
+                    <a href="{{url_for('main.post', id = post.id)}}">
+                        <h2 class="post-title">
+                            {{post.post_title}}
+                        </h2>
+                        <h3 class="post-subtitle">
+                            {{post.post_content | truncate(45) | safe}}
+                        </h3>
+                    </a>
+                    <div class="post-meta">Posted by
+                        <a href="/profile/{{post.user_id}}">{{post.post_by}}</a>
+                        on {{post.posted_at.strftime('%B %d, %Y')}}
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}
