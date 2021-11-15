@@ -1,0 +1,3 @@
+Hello, a new blog post by  has been made, head over to the blog to view it.
+
+{{user_fname}} {{user_lname}}.
