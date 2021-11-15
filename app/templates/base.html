@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>The-Blog</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&display=swap" rel="stylesheet">
+  <link
+    href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
+  <script src="https://kit.fontawesome.com/2e65670cdd.js"></script>
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
+  <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename='css/clean-blog.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+  <link rel="icon" href="{{url_for('static', filename = 'favicon/favicon.png')}}" type="img/jpg">
+  <link rel="icon" href="../static/favicon/favicon.png" type="images/icon">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #000;">
+    <img src="../static/favicon/favicon.png" alt="" height="40" />
+    <a class="navbar-brand" href="/" style="font-family: 'Major Mono Display', monospace; font-size: 30px">The-Blog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        {%if current_user.is_authenticated%}
+        <li class="nav-item">
+          <a class="nav-link" href="/post/new">Create Post</a>
+        </li>
+        {%endif%}
+      </ul>
+      <div class="form-inline my-2 my-lg-0">
+        <ul class="navbar-nav mr-auto">
+          {%if current_user.is_authenticated%}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Account
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{url_for('main.profile', id = current_user.id)}}">Profile</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{url_for('auth.logout')}}">Logout</a>
+            </div>
+          </li>
+          {%else%}
+          <form class="form-inline my-2 my-lg-0" method="POST">
+            <input class="form-control mr-sm-2" type="email" placeholder="Email" name="subscriber" required>
+            <button class="btn btn-outline-info btn-sm" type="submit" style="padding: 8px;">Subscribe</button>
+          </form>
+          <li class="nav-item">
+            <a class="nav-link" href="/authenticate/login">Login</a>
+          </li>
+          {%endif%}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {%block content%}
+  {%endblock%}
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="https://twitter.com/kaylor254" target="_blank">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.instagram.com/levyomolo/" target="_blank">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://github.com/omololevy" target="_blank">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; omololevy 2021</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="{{ url_for('static', filename='js/clean-blog.min.js') }}"></script>
+  <script>
+    $(document).ready(function () {
+      $('#summernote').summernote();
+    });
+  </script>
+</body>
+
+</html>
