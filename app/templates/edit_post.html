@@ -1,0 +1,25 @@
+{%extends "base.html"%}
+
+{%block content%}
+<br><br><br>
+<div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h3>Update blog post</h3>
+                <form method="post">
+                    {{edit_form.hidden_tag()}}
+                    {{edit_form.title.label}} {{edit_form.title(class = "form-control", value = post.post_title)}}
+                    <br>
+                    {{edit_form.post.label}} {{edit_form.post(id = "summernote", value = post.post_content)}}
+                    <br>
+                    {{edit_form.submit(class = "btn btn-primary")}}
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}
