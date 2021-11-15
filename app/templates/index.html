@@ -1,0 +1,41 @@
+{% extends 'base.html'%}
+{% block content %}
+<header class="masthead" style="background-image: url('https://picsum.photos/1900/1267?grayscale'); margin-top: 40px;">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <span class="subheading"><i class="fas fa-quote-left"></i> <em>{{quote.quote}}</em> <i class="fas fa-quote-right"></i></span>
+          <h2>{{quote.author}}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      {%for post in posts[::-1]%}
+      <div class="post-preview">
+        <a href="{{url_for('main.post', id = post.id)}}">
+          <h2 class="post-title">
+            {{post.post_title}}
+          </h2>
+          <h3 class="post-subtitle">
+            {{post.post_content | truncate (45) | safe}}
+          </h3>
+        </a>
+        <p class="post-meta">Posted by
+          <a href="{{url_for('main.profile', id = post.user_id)}}">{{post.post_by}}</a> on
+          {{post.posted_at.strftime('%B %d, %Y')}}
+        </p>
+      </div>
+      <hr>
+      {%endfor%}
+    </div>
+  </div>
+</div>
+{%endblock%}
