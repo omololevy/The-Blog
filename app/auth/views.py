@@ -8,8 +8,9 @@ from .. import db
 # from ..email import mail_message
 
 @auth.route("/signup", methods = ["GET", "POST"])
+
 def register():
-    signup_form = SignUpForm()
+    signup_form = SignUpForm(csrf_enabled=False)
     if signup_form.validate_on_submit():
         user = User(first_name = signup_form.first_name.data,
                     last_name = signup_form.last_name.data,  
@@ -29,7 +30,7 @@ def register():
 
 @auth.route("/login", methods = ["GET", "POST"])
 def login():
-    login_form = LoginForm()
+    login_form = LoginForm(csrf_enabled=False)
     if login_form.validate_on_submit():
         user = User.query.filter_by(email = login_form.email.data).first()
         if user is not None and user.verify_password(login_form.password.data):
