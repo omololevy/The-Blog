@@ -28,7 +28,7 @@ With this app, a writer is also able to :
 
 ## Project live sites
   * This is the live [link to the repo ](https://github.com/omololevy/The-Blog) <br>
-  * This is the live [link to the app ](https://the-blog.herokuapp.com/)
+  * This is the live [link to the app ](https://cotechblog.herokuapp.com/)
 
 
 ## Homepage Demo
@@ -66,22 +66,28 @@ The app looks like this:
             |-views.py
         |-static/
             |-css/
+            |-favicon/
+            |-fonts/
+            |-js/
             |-photos/
-            |-images/
         |-templates/
             |-auth/
                 |-login.html
-                |-register.html
+                |-signup.html
             |-email/
-                |-welcome_user.html
-                |-welcome_user.txt
+                |-notification.html
+                |-notification.txt
+                |-welcome.html
+                |-welcome.txt
             |-profile/
                 |-profile.html
                 |-update.html
             |-base.html
+            |-edit_post.html
             |-fourOwfour.html
             |-index.html
             |-posts.html
+            |-new_posts.html
             |-navbar.html
         |-__init__.py
         |-email.py
