@@ -23,7 +23,9 @@ def create_app(config_name):
 
     # Creating the app configurations
     app.config.from_object(config_options[config_name])
-    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+    SECRET_KEY = os.urandom(32)
+    app.config['SECRET_KEY'] = SECRET_KEY
+
     app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
     # Initializing flask extensions
     db.init_app(app)

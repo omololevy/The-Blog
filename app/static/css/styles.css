@@ -126,6 +126,10 @@ footer {
     display: block;
 }
 
+.T,.h,.e,.B {
+    font-size: x-large;
+    font-weight: bold;
+}
 .T {color: red;}
 .h {color: purple;}
 .e {color: rgb(16, 35, 204);}
