@@ -10,6 +10,7 @@ class SignUpForm(FlaskForm):
     email = StringField("Your Email Address", validators=[DataRequired(), Email()])
     password = PasswordField("Password", validators=[DataRequired(), EqualTo("password_confirm", message = "Passwords must match")])
     password_confirm = PasswordField("Confirm Password", validators=[DataRequired()])
+    
     submit = SubmitField("Sign Up")
 
     #Custom email validation
@@ -26,4 +27,6 @@ class LoginForm(FlaskForm):
     email = StringField("Your Email Address", validators=[DataRequired(), Email()])
     password = PasswordField("Password", validators=[DataRequired()])
     remember = BooleanField("Remember Me")
+    
+    
     submit = SubmitField("Sign In")
